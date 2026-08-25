@@ -1,9 +1,13 @@
 using System;
 using System.Collections.Generic;
 
+/// <summary>
+/// 타워 모델의 공통 속성 및 무기 관리를 제공하는 기본 추상 클래스
+/// </summary>
 public abstract class ATowerBase : ISellable, ITickable
 {
     private Func<WorldPosition, float, AMonsterBase> _targetProvider;
+    private readonly Dictionary<ATowerWeaponBase, Func<WorldPosition>> _weaponPositionProviders;
 
     public IReadOnlyList<ATowerWeaponBase> WeaponList { get { return _weaponList; } }
     private readonly List<ATowerWeaponBase> _weaponList;
@@ -33,9 +37,15 @@ public abstract class ATowerBase : ISellable, ITickable
         AttackRange = Math.Max(0f, attackRange);
         SellPrice = Math.Max(0, sellPrice);
         _weaponList = new List<ATowerWeaponBase>();
+        _weaponPositionProviders = new Dictionary<ATowerWeaponBase, Func<WorldPosition>>();
     }
 
     public void AddWeapon(ATowerWeaponBase weapon)
+    {
+        AddWeapon(weapon, null);
+    }
+
+    public void AddWeapon(ATowerWeaponBase weapon, Func<WorldPosition> positionProvider)
     {
         if (weapon == null)
         {
@@ -43,6 +53,7 @@ public abstract class ATowerBase : ISellable, ITickable
         }
 
         _weaponList.Add(weapon);
+        _weaponPositionProviders[weapon] = positionProvider;
         BindWeapon(weapon);
         WeaponAdded?.Invoke(weapon);
     }
@@ -82,6 +93,12 @@ public abstract class ATowerBase : ISellable, ITickable
 
     private void BindWeapon(ATowerWeaponBase weapon)
     {
-        weapon.Bind(() => Position, () => AttackRange, _targetProvider);
+        Func<WorldPosition> positionProvider;
+        if (!_weaponPositionProviders.TryGetValue(weapon, out positionProvider) || positionProvider == null)
+        {
+            positionProvider = () => Position;
+        }
+
+        weapon.Bind(positionProvider, () => AttackRange, _targetProvider);
     }
 }

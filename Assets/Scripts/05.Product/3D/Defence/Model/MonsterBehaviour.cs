@@ -1,6 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Unity 씬의 몬스터 GameObject와 도메인 모델 `Monster`를 연결하고 위치를 동기화
+/// </summary>
 public sealed class MonsterBehaviour : MonoBehaviour
 {
     [SerializeField, Min(1f)] private float _maxHp = 100f;
@@ -17,7 +20,7 @@ public sealed class MonsterBehaviour : MonoBehaviour
     {
         if (MGameManager.Instance == null || _waypoints == null || _waypoints.Length == 0)
         {
-            CPrint.Error("MGameManager �ν��Ͻ� Ȯ��", this);
+            CPrint.Error("MGameManager or waypoints null 인스펙터 확인", this);
             enabled = false;
             return;
         }
@@ -37,12 +40,21 @@ public sealed class MonsterBehaviour : MonoBehaviour
 
         if (path.Count < 2)
         {
-            CPrint.Error("MonsterBehaviour �� waypoint Ȯ��", this);
+            CPrint.Error("MonsterBehaviour waypoints 는 2 이상 필요", this);
             enabled = false;
             return;
         }
 
         Model = new Monster(_maxHp, _moveSpeed, _reward, _moveType, _type, path);
+        
+        Renderer rend = GetComponentInChildren<Renderer>();
+        if (rend != null)
+        {
+            float estimate = Mathf.Max(rend.bounds.extents.x, rend.bounds.extents.z);
+            Model.HitRadius = Mathf.Max(0.1f, estimate);
+            Model.HitHeight = rend.bounds.max.y;
+        }
+
         MGameManager.Instance.DefenceManager.AddMonster(Model);
     }
 

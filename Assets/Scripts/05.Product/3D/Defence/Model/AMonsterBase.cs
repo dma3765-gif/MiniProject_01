@@ -19,6 +19,9 @@ public enum EnumMonsterMoveType
     Flying
 }
 
+/// <summary>
+/// 몬스터 모델의 기본 상태와 동작(이동/데미지/사망)을 정의하는 추상 클래스
+/// </summary>
 public abstract class AMonsterBase : ITickable, IDamageable
 {
     public EnumMonsterType MonsterType { get; set; }
@@ -32,6 +35,8 @@ public abstract class AMonsterBase : ITickable, IDamageable
     public bool HasReachedGoal { get; protected set; }
     public int Reward { get; protected set; }
     public WorldPosition Position { get; protected set; }
+    public float HitRadius { get; set; }
+    public float HitHeight { get; set; }
 
     public event Action<AMonsterBase> Died;
     public event Action<AMonsterBase> ReachedGoal;
@@ -43,6 +48,8 @@ public abstract class AMonsterBase : ITickable, IDamageable
         MoveSpeed = Math.Max(0f, moveSpeed);
         Reward = Math.Max(0, reward);
         Position = startPosition;
+        HitRadius = 0.5f;
+        HitHeight = startPosition.Y;
         MonsterState = EnumMonsterState.Idle;
         MonsterMoveType = moveType;
         MonsterType = type;

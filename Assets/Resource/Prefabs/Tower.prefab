@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ec77237a27f4d764a80de682cbd90fe8, type: 2}
+  - {fileID: 2100000, guid: 5324d803ce5d7ea47868af8408df9e5f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRange: 50
   _sellPrice: 50
-  _level: 21
+  _level: 1
   _levelMaterials:
   - {fileID: 2100000, guid: a61c4181c14ec1f4f8d66576bb9ba1a7, type: 2}
   - {fileID: 2100000, guid: 5324d803ce5d7ea47868af8408df9e5f, type: 2}
@@ -223,6 +223,9 @@ MonoBehaviour:
   _damage: 1
   _attackInterval: 0.5
   _projectileSpeed: 25
+  _arcHeight: 1
+  _boostTime: 0.5
+  _boostVerticalSpeed: 10
   _projectilePrefab: {fileID: -6225838053052746655, guid: a50b60c91a445f549bd5b4be2a0197b6, type: 3}
 --- !u!1 &8125562468965708492
 GameObject:
@@ -286,7 +289,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ec77237a27f4d764a80de682cbd90fe8, type: 2}
+  - {fileID: 2100000, guid: 5324d803ce5d7ea47868af8408df9e5f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

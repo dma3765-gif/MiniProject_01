@@ -45,6 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a17295b5df38be645adb5e912cfffc5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _hitEffectPrefab: {fileID: 8464950693656172981, guid: 66e1d42e9e16f6241b2fb641ee16bc84, type: 3}
+  _hitEffectDuration: 1
 --- !u!1001 &6487262023923955546
 PrefabInstance:
   m_ObjectHideFlags: 0
