@@ -6,6 +6,8 @@ public sealed class MonsterBehaviour : MonoBehaviour
     [SerializeField, Min(1f)] private float _maxHp = 100f;
     [SerializeField, Min(0f)] private float _moveSpeed = 2f;
     [SerializeField, Min(0)] private int _reward = 10;
+    [SerializeField] private EnumMonsterType _type = EnumMonsterType.Normal;
+    [SerializeField] private EnumMonsterMoveType _moveType = EnumMonsterMoveType.Ground;
     [SerializeField] private Transform[] _waypoints;
     [SerializeField] private bool _destroyWhenFinished = true;
 
@@ -40,7 +42,7 @@ public sealed class MonsterBehaviour : MonoBehaviour
             return;
         }
 
-        Model = new Monster(_maxHp, _moveSpeed, _reward, path);
+        Model = new Monster(_maxHp, _moveSpeed, _reward, _moveType, _type, path);
         MGameManager.Instance.DefenceManager.AddMonster(Model);
     }
 
