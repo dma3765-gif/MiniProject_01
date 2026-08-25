@@ -3,7 +3,7 @@ using UnityEngine;
 public class MGameManager : MonoBehaviour
 {
     [SerializeField] private int _initialGold = 100;
-    [SerializeField] private int _initialLives = 20;
+    [SerializeField] private int _initialLives = 10;
 
     public static MGameManager Instance { get; private set; }
     public DefenceManager DefenceManager { get; private set; }

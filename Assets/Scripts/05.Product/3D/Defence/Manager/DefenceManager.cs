@@ -38,7 +38,7 @@ public class DefenceManager : AManagerBase
         tower.Sold += OnTowerSold;
         tower.WeaponAdded += OnWeaponAdded;
 
-        for (int i = 0; i < tower.WeaponList.Count; i++)
+        for (int i = 0; i < tower.WeaponList.Count; i++) 
         {
             SubscribeWeapon(tower.WeaponList[i]);
         }

@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9607862bf90553342b6c7a1e3d273805, type: 2}
+  - {fileID: 2100000, guid: ec77237a27f4d764a80de682cbd90fe8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -161,7 +161,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7698538839314169320}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -182,13 +182,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 459e8534fb3e7c6438779274b3c59e69, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackRange: 5
+  _attackRange: 50
   _sellPrice: 50
-  _level: 0
-  _damage: 10
-  _attackInterval: 1
-  _projectileSpeed: 10
-  _projectilePrefab: {fileID: 0}
+  _level: 21
+  _levelMaterials:
+  - {fileID: 2100000, guid: a61c4181c14ec1f4f8d66576bb9ba1a7, type: 2}
+  - {fileID: 2100000, guid: 5324d803ce5d7ea47868af8408df9e5f, type: 2}
+  - {fileID: 2100000, guid: 7c1124ffa35b131419adb2e057c71bea, type: 2}
+  - {fileID: 2100000, guid: d13520207d2b1bd45992686f36b4bbb7, type: 2}
+  - {fileID: 2100000, guid: c0291075bddab5d4e8a1f454696d3280, type: 2}
+  - {fileID: 2100000, guid: 009351c1a8fe9fb4d9a28e2fb6a14b80, type: 2}
+  - {fileID: 2100000, guid: 74541be13abfbe742a7e13b7afc491dd, type: 2}
+  - {fileID: 2100000, guid: 4a915711df5129c4ebc47cfa25d82a84, type: 2}
+  - {fileID: 2100000, guid: 64a4f87aeee14b341be0562edc6cc2ef, type: 2}
+  - {fileID: 2100000, guid: b7a0eab2e4ec1bf45bca683bd8ecf078, type: 2}
+  - {fileID: 2100000, guid: 7d91067f083d1374ab5643a03a26718a, type: 2}
+  - {fileID: 2100000, guid: f0842d40a21e6244cb15cf986f58bca5, type: 2}
+  - {fileID: 2100000, guid: 3cf69c53974e53e4e875ae9a9f40b57a, type: 2}
+  - {fileID: 2100000, guid: 953c11a7b9e608b49b9e4c62d0b83e38, type: 2}
+  - {fileID: 2100000, guid: 4473bd7161ba5ff46a385284e9962b15, type: 2}
+  - {fileID: 2100000, guid: a083ef7bdb0a125499d463add88f0a04, type: 2}
+  - {fileID: 2100000, guid: fc5931652f9f2f3479c5a33bca471726, type: 2}
+  - {fileID: 2100000, guid: 188eb00435563f94eae230035aacf0e5, type: 2}
+  - {fileID: 2100000, guid: d2916adcb365c3b4ca888eacaa2ffd6e, type: 2}
+  - {fileID: 2100000, guid: 028641809cb7cef46a5d5776af7f6bd9, type: 2}
+  - {fileID: 2100000, guid: c76c5eae61da5624ea232cd53b98e84b, type: 2}
+  - {fileID: 2100000, guid: ec77237a27f4d764a80de682cbd90fe8, type: 2}
+  - {fileID: 2100000, guid: c64abf014c12e6a4b8474c0356dcdb2e, type: 2}
+  - {fileID: 2100000, guid: 8198b76f00d01d148945b419448dda50, type: 2}
+  - {fileID: 2100000, guid: 28a632698b06b534a873e506c6f67221, type: 2}
+  - {fileID: 2100000, guid: e62467fb2ccb07445ac00358274f5e56, type: 2}
+  - {fileID: 2100000, guid: 32655d55dfce4af478c41931ba17f4b5, type: 2}
+  - {fileID: 2100000, guid: b722eff1356bf5845802cef9b3164b54, type: 2}
+  _orbitRadius: 1.5
+  _orbitClearance: 0.5
+  _fitOrbitToTowerBase: 1
+  _rotationSpeed: 120
+  _weaponPrefabs:
+  - {fileID: 2644083184305433293, guid: dda47889215614f4ea92cebd201380b5, type: 3}
+  _damage: 1
+  _attackInterval: 0.5
+  _projectileSpeed: 25
+  _projectilePrefab: {fileID: -6225838053052746655, guid: a50b60c91a445f549bd5b4be2a0197b6, type: 3}
 --- !u!1 &8125562468965708492
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,7 +286,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9607862bf90553342b6c7a1e3d273805, type: 2}
+  - {fileID: 2100000, guid: ec77237a27f4d764a80de682cbd90fe8, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
