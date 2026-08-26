@@ -226,6 +226,8 @@ MonoBehaviour:
   _arcHeight: 1
   _boostTime: 0.5
   _boostVerticalSpeed: 10
+  _HitEffectBaseColor: {r: 0.64705884, g: 0.29803923, b: 0.1254902, a: 1}
+  _ProjectileEffectBaseColor: {r: 1, g: 0.4862745, b: 0.23921569, a: 1}
   _projectilePrefab: {fileID: -6225838053052746655, guid: a50b60c91a445f549bd5b4be2a0197b6, type: 3}
 --- !u!1 &8125562468965708492
 GameObject:
