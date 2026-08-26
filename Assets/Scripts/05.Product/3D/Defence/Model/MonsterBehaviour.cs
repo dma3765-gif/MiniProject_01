@@ -1,18 +1,36 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 /// <summary>
 /// Unity 씬의 몬스터 GameObject와 도메인 모델 `Monster`를 연결하고 위치를 동기화
 /// </summary>
 public sealed class MonsterBehaviour : MonoBehaviour
 {
+    #region 인스펙터
+    [Header("Monster Stats")]
     [SerializeField, Min(1f)] private float _maxHp = 100f;
     [SerializeField, Min(0f)] private float _moveSpeed = 2f;
     [SerializeField, Min(0)] private int _reward = 10;
     [SerializeField] private EnumMonsterType _type = EnumMonsterType.Normal;
     [SerializeField] private EnumMonsterMoveType _moveType = EnumMonsterMoveType.Ground;
+
+    [Header("UI HP Bar")]
+    [SerializeField] private float _hpBarWidth = 1f;
+    [SerializeField] private float _hpBarHeight = 0.1f;
+    [SerializeField] private float _hpBarOffset = 0.3f;
+
+    [Header("Waypoints")]
     [SerializeField] private Transform[] _waypoints;
     [SerializeField] private bool _destroyWhenFinished = true;
+    #endregion
+
+    #region 내부 변수
+    private Canvas _hpCanvas;
+    private Image _hpFill;
+    private RectTransform _hpFillRect;
+    private Camera _targetCamera;
+    #endregion
 
     public Monster Model { get; private set; }
 
@@ -56,6 +74,114 @@ public sealed class MonsterBehaviour : MonoBehaviour
         }
 
         MGameManager.Instance.DefenceManager.AddMonster(Model);
+
+        CreateHpBar();
+        UpdateHpBar();
+    }
+
+    private void CreateHpBar()
+    {
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+
+        if (renderers.Length == 0)
+        {
+            return;
+        }
+
+        Bounds bounds = renderers[0].bounds;
+
+        for (int i = 1; i < renderers.Length; i++)
+        {
+            bounds.Encapsulate(renderers[i].bounds);
+        }
+
+        float monsterWidth = bounds.size.x;
+        float monsterHeight = bounds.size.y;
+
+        GameObject canvasObj = new GameObject("HpCanvas");
+        canvasObj.transform.SetParent(transform);
+
+        _hpCanvas = canvasObj.AddComponent<Canvas>();
+        _hpCanvas.renderMode = RenderMode.WorldSpace;
+        _hpCanvas.sortingOrder = 100;
+
+        RectTransform canvasRect = canvasObj.GetComponent<RectTransform>();
+
+        canvasRect.sizeDelta = new Vector2(300f, 24f);
+
+        float barWorldWidth = Mathf.Clamp(monsterWidth * 0.6f, 1.5f, 4f);
+        float scale = barWorldWidth / 100f;
+
+        canvasRect.localScale = new Vector3(scale, scale, scale);
+
+        Vector3 worldPosition = new Vector3(
+            bounds.center.x,
+            bounds.max.y + monsterHeight * 0.15f,
+            bounds.center.z);
+
+        canvasRect.position = worldPosition;
+
+
+        GameObject backgroundObj = new GameObject("Background");
+        backgroundObj.transform.SetParent(canvasObj.transform, false);
+
+        Image background = backgroundObj.AddComponent<Image>();
+        background.color = new Color(0f, 0f, 0f, 0.8f);
+
+        RectTransform backgroundRect = backgroundObj.GetComponent<RectTransform>();
+        backgroundRect.anchorMin = Vector2.zero;
+        backgroundRect.anchorMax = Vector2.one;
+        backgroundRect.offsetMin = Vector2.zero;
+        backgroundRect.offsetMax = Vector2.zero;
+
+
+        GameObject fillObj = new GameObject("Fill");
+        fillObj.transform.SetParent(backgroundObj.transform, false);
+
+        _hpFill = fillObj.AddComponent<Image>();
+        _hpFill.color = Color.green;
+
+        _hpFillRect = fillObj.GetComponent<RectTransform>();
+
+        _hpFillRect.anchorMin = new Vector2(0f, 0f);
+        _hpFillRect.anchorMax = new Vector2(1f, 1f);
+        _hpFillRect.offsetMin = new Vector2(2f, 2f);
+        _hpFillRect.offsetMax = new Vector2(-2f, -2f);
+    }
+
+    private void UpdateHpBar()
+    {
+        if (_hpFill == null || _hpFillRect == null || Model == null)
+        {
+            return;
+        }
+
+        float hpRate = Mathf.Clamp01(Model.Hp / Model.MaxHp);
+
+        _hpFillRect.anchorMax = new Vector2(hpRate, 1f);
+
+        if (hpRate > 0.6f)
+        {
+            _hpFill.color = Color.green;
+        }
+        else if (hpRate > 0.3f)
+        {
+            _hpFill.color = Color.yellow;
+        }
+        else
+        {
+            _hpFill.color = Color.red;
+        }
+    }
+
+    private void UpdateHpBarRotation()
+    {
+        if (_hpCanvas == null)
+        {
+            return;
+        }
+
+        _hpCanvas.transform.rotation = Camera.main.transform.rotation;
     }
 
     private void LateUpdate()
@@ -66,6 +192,10 @@ public sealed class MonsterBehaviour : MonoBehaviour
         }
 
         transform.position = ToVector3(Model.Position);
+
+        UpdateHpBar();
+        UpdateHpBarRotation();
+
         if (_destroyWhenFinished && (Model.IsDead || Model.HasReachedGoal))
         {
             Destroy(gameObject);

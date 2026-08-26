@@ -24,6 +24,7 @@ public class DefenceManager : AManagerBase
 
     protected override void OnInit()
     {
+
     }
 
     public void AddTower(ATowerBase tower)
