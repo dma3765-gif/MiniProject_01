@@ -1076,37 +1076,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 75, y: 0, z: 0}
---- !u!1 &443963412
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 443963413}
-  m_Layer: 0
-  m_Name: Hill2
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &443963413
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 443963412}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!1001 &465647237
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1197,7 +1166,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _maxHp: 100
-  _moveSpeed: 4
+  _moveSpeed: 100
   _reward: 10
   _type: 0
   _moveType: 0
@@ -1528,6 +1497,34 @@ PrefabInstance:
     - target: {fileID: 6535746656287056788, guid: 091f3a01d4daaee4e976e6f5d283198b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080921526670752769, guid: 091f3a01d4daaee4e976e6f5d283198b, type: 3}
+      propertyPath: _projectileSpeed
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080921526670752769, guid: 091f3a01d4daaee4e976e6f5d283198b, type: 3}
+      propertyPath: _HitEffectBaseColor.b
+      value: 0.2792809
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080921526670752769, guid: 091f3a01d4daaee4e976e6f5d283198b, type: 3}
+      propertyPath: _HitEffectBaseColor.g
+      value: 0.28051752
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080921526670752769, guid: 091f3a01d4daaee4e976e6f5d283198b, type: 3}
+      propertyPath: _HitEffectBaseColor.r
+      value: 0.2830189
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080921526670752769, guid: 091f3a01d4daaee4e976e6f5d283198b, type: 3}
+      propertyPath: _ProjectileEffectBaseColor.b
+      value: 0.2679245
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080921526670752769, guid: 091f3a01d4daaee4e976e6f5d283198b, type: 3}
+      propertyPath: _ProjectileEffectBaseColor.g
+      value: 0.2679245
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080921526670752769, guid: 091f3a01d4daaee4e976e6f5d283198b, type: 3}
+      propertyPath: _ProjectileEffectBaseColor.r
+      value: 0.2679245
       objectReference: {fileID: 0}
     - target: {fileID: 7698538839314169320, guid: 091f3a01d4daaee4e976e6f5d283198b, type: 3}
       propertyPath: m_Name
@@ -4113,6 +4110,5 @@ SceneRoots:
   - {fileID: 1627802921}
   - {fileID: 992907778}
   - {fileID: 624341794}
-  - {fileID: 443963413}
   - {fileID: 465647237}
   - {fileID: 474984908}
