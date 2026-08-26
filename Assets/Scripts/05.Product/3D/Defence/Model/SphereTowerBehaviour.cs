@@ -30,6 +30,8 @@ public sealed class SphereTowerBehaviour : MonoBehaviour
     [SerializeField, Min(1f)] private float _arcHeight = 1f;
     [SerializeField, Min(0f)] private float _boostTime = 0.5f;
     [SerializeField, Min(0f)] private float _boostVerticalSpeed = 10f;
+    [SerializeField] private Color _HitEffectBaseColor = new Color32(165, 76, 32, 255);
+    [SerializeField] private Color _ProjectileEffectBaseColor = new Color32(255, 124, 61, 255);
     [SerializeField] private ProjectileBehaviour _projectilePrefab;
 
     public SphereTower Model { get; private set; }
@@ -237,13 +239,33 @@ public sealed class SphereTowerBehaviour : MonoBehaviour
         if (_projectilePrefab == null)
         {
             return;
-        }
+        }        
 
         ProjectileBehaviour projectileBehaviour = Instantiate(
             _projectilePrefab,
             weaponTransform.position,
             Quaternion.identity);
-        projectileBehaviour.Bind(projectile);
+
+        SetProjectile_02_Color(projectileBehaviour.transform, _ProjectileEffectBaseColor);
+
+        projectileBehaviour.Bind(projectile, _HitEffectBaseColor);
+    }
+
+    private void SetProjectile_02_Color(Transform transform, Color baseColor)
+    {
+        ColorCore.SetParticleColor(transform, "vfx_Flamethrower_02/Flare", baseColor);
+        ColorCore.SetParticleColor(transform, "vfx_Flamethrower_02/Flares", baseColor);
+
+        Color flameColor1 = ColorCore.MakeColor(baseColor, 26.84f, 0.701f, 1f);
+        Color flameColor2 = ColorCore.MakeColor(baseColor, 3.68f, 1.108f, 1f);
+        Color flameColor3 = ColorCore.MakeColor(baseColor, -6.28f, 1.146f, 0.675f);
+
+        ColorCore.SetParticleGradientType01(
+            transform,
+            "vfx_Flamethrower_02/Flames",
+            flameColor1,
+            flameColor2,
+            flameColor3);
     }
 
     private void ApplyLevelMaterial()

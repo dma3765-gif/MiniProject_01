@@ -10,10 +10,12 @@ public sealed class ProjectileBehaviour : MonoBehaviour
     [SerializeField, Min(0.1f)] private float _hitEffectDuration = 2f;
     private bool _playedHitEffect = false;
     private Vector3 _lastModelPosition;
+    private Color _hitEffectBaseColor;
 
-    public void Bind(Projectile model)
+    public void Bind(Projectile model, Color hitEffectBaseColor)
     {
         _model = model;
+        _hitEffectBaseColor = hitEffectBaseColor;
         SyncPosition();
         _lastModelPosition = transform.position;
     }
@@ -39,7 +41,7 @@ public sealed class ProjectileBehaviour : MonoBehaviour
         {
             if (!_playedHitEffect)
             {
-                PlayHitEffect();
+                PlayHit_01_Effect();
                 _playedHitEffect = true;
             }
 
@@ -53,18 +55,34 @@ public sealed class ProjectileBehaviour : MonoBehaviour
         transform.position = new Vector3(position.X, position.Y, position.Z);
     }
 
-    private void PlayHitEffect()
-    {        
+    private void PlayHit_01_Effect()
+    {
         WorldPosition wp = _model.Position;
         Vector3 spawn = new Vector3(wp.X, wp.Y, wp.Z);
 
         if (_hitEffectPrefab != null)
         {
             GameObject fx = Instantiate(_hitEffectPrefab, spawn, Quaternion.identity);
+
+            Color baseColor = _hitEffectBaseColor;
+            (Color brightColor, Color softColor, Color darkColor) = ColorCore.GetBrightSoftDarkColors(baseColor);
+
+
+            ColorCore.SetParticleColor(fx.transform, "Flash", baseColor);
+            ColorCore.SetParticleColor(fx.transform, "Flares", brightColor);
+            ColorCore.SetParticleColor(fx.transform, "Shockwave", softColor);
+            ColorCore.SetParticleColor(fx.transform, "Shockwave (1)", softColor);
+            ColorCore.SetParticleColor(fx.transform, "Shockwave (2)", softColor);
+            ColorCore.SetParticleColor(fx.transform, "Particle System", darkColor);
+            ColorCore.SetParticleColor(fx.transform, "Particle System (2)", darkColor);
+            ColorCore.SetParticleColor(fx.transform, "Particle System (4)", darkColor);
+
             if (_hitEffectDuration > 0f)
             {
                 Destroy(fx, _hitEffectDuration);
             }
         }
     }
+
+    
 }
