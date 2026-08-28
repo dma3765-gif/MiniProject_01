@@ -82,8 +82,12 @@ public class UIGameMenuManager : MonoBehaviour
 
     public void ClickBuild()
     {
-        return;
-        //SetUI_EditMode();
+        if (MGameManager.Instance == null || MGameManager.Instance.PlacementManager == null)
+        {
+            return;
+        }
+
+        MGameManager.Instance.PlacementManager.BeginPlacement();
     }
 
     public void ClickStartWave()
