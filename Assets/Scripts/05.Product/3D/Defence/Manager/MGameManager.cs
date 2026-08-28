@@ -7,6 +7,7 @@ public class MGameManager : MonoBehaviour
 
     public static MGameManager Instance { get; private set; }
     public DefenceManager DefenceManager { get; private set; }
+    public MonsterWaveManager WaveManager { get; private set; }
 
     private void Awake()
     {
@@ -19,6 +20,13 @@ public class MGameManager : MonoBehaviour
         Instance = this;
         DefenceManager = new DefenceManager(_initialGold, _initialLives);
         DefenceManager.Init();
+
+        WaveManager = GetComponent<MonsterWaveManager>();
+        if (WaveManager == null)
+        {
+            WaveManager = gameObject.AddComponent<MonsterWaveManager>();
+        }
+        WaveManager.Init();
     }
 
     private void Start()

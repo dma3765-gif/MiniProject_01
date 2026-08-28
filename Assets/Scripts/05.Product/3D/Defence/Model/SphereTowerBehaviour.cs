@@ -28,8 +28,8 @@ public sealed class SphereTowerBehaviour : MonoBehaviour
     [SerializeField, Min(0.01f)] private float _attackInterval = 1f;
     [SerializeField, Min(0.01f)] private float _projectileSpeed = 10f;
     [SerializeField, Min(1f)] private float _arcHeight = 1f;
-    [SerializeField, Min(0f)] private float _boostTime = 0.5f;
-    [SerializeField, Min(0f)] private float _boostVerticalSpeed = 10f;
+    [SerializeField, Min(0f)] private float _boostTime = 0.1f;
+    [SerializeField, Min(0f)] private float _boostVerticalSpeed = 150f;
     [SerializeField] private Color _HitEffectBaseColor = new Color32(165, 76, 32, 255);
     [SerializeField] private Color _ProjectileEffectBaseColor = new Color32(255, 124, 61, 255);
     [SerializeField] private ProjectileBehaviour _projectilePrefab;

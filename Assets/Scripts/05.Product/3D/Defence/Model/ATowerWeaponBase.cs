@@ -2,9 +2,13 @@ using System;
 
 public abstract class ATowerWeaponBase : ITickable
 {
+    private static readonly Random _random = new Random();
+
     private Func<WorldPosition> _positionProvider;
     private Func<float> _rangeProvider;
     private Func<WorldPosition, float, AMonsterBase> _targetProvider;
+
+    private const float AttackIntervalRandomRate = 0.1f;
 
     public float AttackInterval { get; private set; }
     public float CooldownRemaining { get; private set; }
@@ -28,7 +32,7 @@ public abstract class ATowerWeaponBase : ITickable
             return;
         }
 
-        CooldownRemaining = Math.Max(0f, CooldownRemaining - deltaTime);
+        CooldownRemaining = Math.Max(0f, CooldownRemaining - deltaTime); 
         if (CooldownRemaining > 0f)
         {
             return;
@@ -41,7 +45,9 @@ public abstract class ATowerWeaponBase : ITickable
         }
 
         Fire(target, _positionProvider());
-        CooldownRemaining = AttackInterval;
+
+        double randomRate = (_random.NextDouble() * 2.0 - 1.0) * AttackIntervalRandomRate;
+        CooldownRemaining = AttackInterval * (float)(1.0 + randomRate);
     }
 
     protected abstract void Fire(AMonsterBase target, WorldPosition origin);

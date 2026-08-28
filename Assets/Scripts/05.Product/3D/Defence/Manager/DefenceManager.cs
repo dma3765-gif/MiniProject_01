@@ -15,6 +15,8 @@ public class DefenceManager : AManagerBase
 
     public event Action<int> GoldChanged;
     public event Action<int> LivesChanged;
+    public event Action<AMonsterBase> MonsterDied;
+    public event Action<AMonsterBase> MonsterReachedGoal;
 
     public DefenceManager(int initialGold = 100, int initialLives = 20)
     {
@@ -39,7 +41,7 @@ public class DefenceManager : AManagerBase
         tower.Sold += OnTowerSold;
         tower.WeaponAdded += OnWeaponAdded;
 
-        for (int i = 0; i < tower.WeaponList.Count; i++) 
+        for (int i = 0; i < tower.WeaponList.Count; i++)
         {
             SubscribeWeapon(tower.WeaponList[i]);
         }
@@ -117,12 +119,14 @@ public class DefenceManager : AManagerBase
     {
         Gold += monster.Reward;
         GoldChanged?.Invoke(Gold);
+        MonsterDied?.Invoke(monster);
     }
 
     private void OnMonsterReachedGoal(AMonsterBase monster)
     {
         Lives = Math.Max(0, Lives - 1);
         LivesChanged?.Invoke(Lives);
+        MonsterReachedGoal?.Invoke(monster);
     }
 
     private void OnTowerSold(ATowerBase tower)
@@ -173,7 +177,6 @@ public class DefenceManager : AManagerBase
                 weapon.ProjectileCreated -= OnProjectileCreated;
             }
         }
-
         _playerTowerList.RemoveAt(index);
     }
 }
