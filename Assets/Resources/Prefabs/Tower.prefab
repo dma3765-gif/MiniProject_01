@@ -62,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5324d803ce5d7ea47868af8408df9e5f, type: 2}
+  - {fileID: 2100000, guid: a61c4181c14ec1f4f8d66576bb9ba1a7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -184,7 +184,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRange: 50
   _sellPrice: 50
-  _level: 1
+  _level: 0
   _levelMaterials:
   - {fileID: 2100000, guid: a61c4181c14ec1f4f8d66576bb9ba1a7, type: 2}
   - {fileID: 2100000, guid: 5324d803ce5d7ea47868af8408df9e5f, type: 2}
@@ -214,6 +214,18 @@ MonoBehaviour:
   - {fileID: 2100000, guid: e62467fb2ccb07445ac00358274f5e56, type: 2}
   - {fileID: 2100000, guid: 32655d55dfce4af478c41931ba17f4b5, type: 2}
   - {fileID: 2100000, guid: b722eff1356bf5845802cef9b3164b54, type: 2}
+  _baseDamageMin: 8
+  _baseDamageMax: 14
+  _damageGrowthMin: 2
+  _damageGrowthMax: 5
+  _sellInvestmentRate: 0.65
+  _combatValueRate: 0.25
+  _tierAttackIntervalMultipliers:
+  - 1.15
+  - 1
+  - 0.85
+  - 0.7
+  _upgradeLevels: []
   _orbitRadius: 1.5
   _orbitClearance: 0.5
   _fitOrbitToTowerBase: 1
@@ -291,7 +303,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 5324d803ce5d7ea47868af8408df9e5f, type: 2}
+  - {fileID: 2100000, guid: a61c4181c14ec1f4f8d66576bb9ba1a7, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
