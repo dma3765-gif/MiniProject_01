@@ -6218,6 +6218,7 @@ GameObject:
   - component: {fileID: 1627802920}
   - component: {fileID: 1627802919}
   - component: {fileID: 1627802922}
+  - component: {fileID: 1627802923}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -6245,6 +6246,7 @@ MonoBehaviour:
   _placementHeightOffset: 0
   _placementSnapDivision: 4
   _uiFont: {fileID: 11400000, guid: 22d0e81fca1181744b7395b5c4be4266, type: 2}
+  _gameMusicClip: {fileID: 8300000, guid: 6ce6d7c4d4f6140f68d2c18955f02e8c, type: 3}
 --- !u!114 &1627802920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6288,6 +6290,44 @@ MonoBehaviour:
   _normalSpawnInterval: 1.5
   _autoStartNextWave: 0
   _nextWaveDelay: 2
+--- !u!114 &1627802923
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1627802918}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e6e3b31dd8ddadf4bad831b68ef4e045, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _uiMixerGroup: {fileID: 0}
+  _sfxMixerGroup: {fileID: 0}
+  _uiVolume: 0.8
+  _sfxVolume: 0.7
+  _musicVolume: 0.45
+  _menuMusicClip: {fileID: 8300000, guid: 1e8f5015922b04dd1b862cf76c53775a, type: 3}
+  _gameMusicClip: {fileID: 8300000, guid: 6ce6d7c4d4f6140f68d2c18955f02e8c, type: 3}
+  _menuSelectionClips:
+  - {fileID: 8300000, guid: e88a1e640dea0405981990364baf002a, type: 3}
+  - {fileID: 8300000, guid: 5f46b33e3c50b44b0af0b921b6373a3e, type: 3}
+  _towerAttackClips:
+  - {fileID: 8300000, guid: d440c9f7407a04474bf738520785306b, type: 3}
+  - {fileID: 8300000, guid: d88fd5368c36748d684ff9e8db416da9, type: 3}
+  - {fileID: 8300000, guid: 5bf7c957d8f4a40ff9977d85be58d48f, type: 3}
+  _towerUpgradeClip: {fileID: 8300000, guid: ceddc15e2d07b4a65bdb173d7eb22830, type: 3}
+  _towerConstructionClip: {fileID: 8300000, guid: 9e8f3edaab6574afa99416a6ec7b5250, type: 3}
+  _towerSellClip: {fileID: 8300000, guid: 3fcb7fef61bc54750bd9dde9a1280199, type: 3}
+  _monsterDeathClips:
+  - {fileID: 8300000, guid: f0f4d264bc72b4d0a8832cff5dd5a1de, type: 3}
+  - {fileID: 8300000, guid: 762259e894ae7465eb205d15ff0415c7, type: 3}
+  - {fileID: 8300000, guid: ded8dc755033747d1b684ba9ec6ebfb1, type: 3}
+  - {fileID: 8300000, guid: af2a0d5f6c52c4117aed93341b8f36cb, type: 3}
+  - {fileID: 8300000, guid: 68e681912bb2e4047a3ff9a20dac4cb6, type: 3}
+  _monsterReachedGoalClip: {fileID: 8300000, guid: b8c05e6303a8c4126b56d5f4a6a70862, type: 3}
+  _defeatClip: {fileID: 8300000, guid: 01e0e2d3367124c909e8666c4241940c, type: 3}
+  _victoryClip: {fileID: 8300000, guid: c4256d7b0022a4e628edc3721077fe30, type: 3}
 --- !u!1 &1633602135
 GameObject:
   m_ObjectHideFlags: 0
